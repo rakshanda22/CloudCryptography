@@ -22,22 +22,9 @@
 			var password1 = document.getElementById("key1").value;
 			var password2 = document.getElementById("key2").value;
 			var password3 = document.getElementById("key3").value;
-			/*var key = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-			for(var i=0;i<length;i++){
-				if((parseInt(password.charAt(i))-96)>0&&(parseInt(password.charAt(i))-96)<17)
-				key[parseInt(password.charAt(i))-96]++; 
-			}
-			console.log(key);*/
-			// Convert text to bytes
 			var text = document.getElementById("data").value;
-			//var textBytes = aesjs.utils.utf8.toBytes(text);
-			// The counter is optional, and if omitted will begin at 1
-			//var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
-			//var encryptedBytes = aesCtr.encrypt(text);
 			console.log(text, password1, password2, password3);
 			var encrypted = encrypt(text, password1, password2, password3);
-			// To print or store the binary data, you may convert it to hex
-			//var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
 			document.getElementById("data").value = encrypted.message1;
 			document.getElementById("key1").value = '';
 			document.getElementById("key2").value = '';
