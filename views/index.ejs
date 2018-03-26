@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Infomation Security Demonstration</title>
+</head>
+<body>
+	<form id="myform" onsubmit="event.preventDefault(); algosubmit()" method="post" action="/save">
+		<input id="email" type="email" name="email" placeholder="Enter Your Email" required>
+		<input id="key1" type="text" placeholder="key1 for encryption">
+		<input id="key2" type="text" placeholder="key2 fsor encryption">
+		<input id="key3" type="text" placeholder="key3 for encryption">
+		<input id="data" type="textbox" name="data" placeholder="Data" required>
+		<input type="submit" name="Submit" value="Submit">
+	</form>
+	<div id="output"></div>
+	<br>
+	<a href="/get">Decrypt</a>
+	<script src="./javascripts/vendor/axios.min.js"></script>
+	<script src="./javascripts/algo.js"></script>
+	<script type="text/javascript">
+		function algosubmit() {
+			var password1 = document.getElementById("key1").value;
+			var password2 = document.getElementById("key2").value;
+			var password3 = document.getElementById("key3").value;
+			/*var key = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+			for(var i=0;i<length;i++){
+				if((parseInt(password.charAt(i))-96)>0&&(parseInt(password.charAt(i))-96)<17)
+				key[parseInt(password.charAt(i))-96]++; 
+			}
+			console.log(key);*/
+			// Convert text to bytes
+			var text = document.getElementById("data").value;
+			//var textBytes = aesjs.utils.utf8.toBytes(text);
+			// The counter is optional, and if omitted will begin at 1
+			//var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+			//var encryptedBytes = aesCtr.encrypt(text);
+			console.log(text, password1, password2, password3);
+			var encrypted = encrypt(text, password1, password2, password3);
+			// To print or store the binary data, you may convert it to hex
+			//var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+			document.getElementById("data").value = encrypted.message1;
+			document.getElementById("key1").value = '';
+			document.getElementById("key2").value = '';
+			document.getElementById("key3").value = '';
+			var myform = document.getElementById("myform");
+			var email = document.getElementById("email").value;
+			axios.post('/save', {
+				email: email,
+			  	finalEncryptedMessage1: encrypted.finalEncryptedMessage1,
+			    finalEncryptedMessage2: encrypted.finalEncryptedMessage2
+			})
+			.then(function (response) {
+			    console.log(response);
+			    document.getElementById("output").innerHTML = 'Successfully updated the data with '+encrypted.finalEncryptedMessage1+' on server 1 and '+encrypted.finalEncryptedMessage2+' on server 2.';
+			})
+			.catch(function (error) {
+			    console.log(error);
+			    document.getElementById("output").HTML = 'Data update failed';
+			});
+			//myform.submit();
+			return false;
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cloud storage new (Infomation Security Demonstration)</title>
+</head>
+<body>
+	<form id="myform" method="get">
+		<input type="email" name="email" placeholder="Enter Your Email" value="<%= email %>" required>
+		<input id="finalEncryptedMessage1" type="textbox" name="finalEncryptedMessage1" placeholder="Data" value="<%= finalEncryptedMessage1+','+finalEncryptedMessage2%>">
+		<input id="key1" type="text" placeholder="Password1 for decryption">
+		<input id="key2" type="text" placeholder="Password2 for decryption">
+		<input type="submit" value="Get Data">
+		<input type="button" value="Decrypt" onclick="algodecrypt()">
+	</form>
+	<div id="data"></div>
+	<script src="./javascripts/algo.js"></script>
+	<script type="text/javascript">
+		function algodecrypt() {
+			var password1 = document.getElementById("key1").value;
+			var password2 = document.getElementById("key2").value;
+			// Convert text to bytes
+			var encrypted = document.getElementById("finalEncryptedMessage1").value;// + document.getElementById("finalEncryptedMessage2").value;
+			var decrypted = decrypt(encrypted,password1,password2);
+			document.getElementById("data").innerHTML = "Your decrypted message is "+decrypted;
+			return true;
+		}
+	</script>
+</body>
+
+</html>
