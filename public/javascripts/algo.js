@@ -14,19 +14,15 @@ function encrypt(message,key1,key2,key3){
 		encryptCloud2[i]=((msgInt[i]^intKey1)-intKey2);
 	}
 	var msgCloud1=new Array(l);
-	//=String.fromCharCode.apply(null,encryptCloud1);
 	var msgCloud2=new Array(l);
-	//String.fromCharCode.apply(null,encryptCloud2);
-	// var interMsg=msgCloud1+msgCloud2;
-	//var encryptMsg=new Array(interMsg.length);
 	for(var i=0;i<l;i++){
 		msgCloud1[i]=(encryptCloud1[i]^intKey3);
 		msgCloud2[i]=(encryptCloud2[i]^intKey3);
 	}
 	console.log("msgCloud1",msgCloud1);
 	console.log("msgCloud2",msgCloud2);
-	var finalEncryptedMessage1=/*String.fromCharCode.apply(null,*/ msgCloud1;//);
-	var finalEncryptedMessage2=/*String.fromCharCode.apply(null, */msgCloud2;//);
+	var finalEncryptedMessage1=msgCloud1;
+	var finalEncryptedMessage2=msgCloud2;
 	console.log("finalEncryptedMessage1",finalEncryptedMessage1);
 	console.log("finalEncryptedMessage2",finalEncryptedMessage2);
 	var message1=new Array(finalEncryptedMessage1,finalEncryptedMessage2);
@@ -39,8 +35,7 @@ function decrypt(finalEncryptedMessage_1,key1,key2){
 	var intKey1=parseInt(key1,2);
 	var intKey2=parseInt(key2,2);
 	console.log(finalEncryptedMessage_1.split(','))
-	finalEncryptedMessage=String.fromCharCode.apply(null,finalEncryptedMessage_1.split(','));/*.apply(null,finalEncryptedMessage);*/
-	//finalEncryptedMessage=finalEncryptedMessage.toString();
+	finalEncryptedMessage=String.fromCharCode.apply(null,finalEncryptedMessage_1.split(','));
 	console.log(finalEncryptedMessage)
 	var l=finalEncryptedMessage.length;
 	var msgChar=new Array(l);
