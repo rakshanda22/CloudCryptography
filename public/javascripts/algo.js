@@ -42,6 +42,7 @@ function decrypt(finalEncryptedMessage_1,key1,key2){
 		if(finalEncryptedMessage[i]<0)
 			finalEncryptedMessage[i]+=256;
 	}
+	console.log(finalEncryptedMessage)
 	var msgChar=new Array(l);
 	//message.toCharArray();
 	var decryption1=new Array(l/2);
