@@ -38,6 +38,10 @@ function decrypt(finalEncryptedMessage_1,key1,key2){
 	finalEncryptedMessage=String.fromCharCode.apply(null,finalEncryptedMessage_1.split(','));
 	console.log(finalEncryptedMessage)
 	var l=finalEncryptedMessage.length;
+	for(var i=0;i<l;i++){
+		if(finalEncryptedMessage[i]<0)
+			finalEncryptedMessage[i]+=256;
+	}
 	var msgChar=new Array(l);
 	//message.toCharArray();
 	var decryption1=new Array(l/2);
