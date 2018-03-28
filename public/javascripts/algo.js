@@ -35,7 +35,14 @@ function decrypt(finalEncryptedMessage_1,key1,key2){
 	var intKey1=parseInt(key1,2);
 	var intKey2=parseInt(key2,2);
 	console.log(finalEncryptedMessage_1.split(','))
-	finalEncryptedMessage=String.fromCharCode.apply(null,finalEncryptedMessage_1.split(','));
+	var finalEncryptedMessage=parseInt(finalEncryptedMessage_1.split(','));
+	var l=finalEncryptedMessage.length;
+	for(var i=0;i<l;i++){
+		if(finalEncryptedMessage[i]<0)
+			finalEncryptedMessage[i]+=256;
+	}
+	console.log(finalEncryptedMessage)
+	finalEncryptedMessage=String.fromCharCode.apply(null,finalEncryptedMessage);
 	console.log(finalEncryptedMessage)
 	var l=finalEncryptedMessage.length;
 	for(var i=0;i<l;i++){
